@@ -16,54 +16,9 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - run: |
-          mkdir -p app/src/main/java/com/example/minimal
-          cat <<EOF > settings.gradle
-          rootProject.name = 'MinimalAndroid'
-          include ':app'
-          EOF
-          cat <<EOF > build.gradle
-          buildscript {
-              repositories {
-                  google()
-                  mavenCentral()
-              }
-              dependencies {
-                  classpath "com.android.tools.build:gradle:8.1.2"
-              }
-          }
-          allprojects {
-              repositories {
-                  google()
-                  mavenCentral()
-              }
-          }
-          EOF
-          mkdir -p app
-          cat <<EOF > app/build.gradle
-          plugins {
-              id 'com.android.application'
-          }
-          android {
-              namespace "com.example.minimal"
-              compileSdk 34
-              defaultConfig {
-                  applicationId "com.example.minimal"
-                  minSdk 21
-                  targetSdk 34
-                  versionCode 1
-                  versionName "1.0"
-              }
-          }
-          EOF
-          cat <<EOF > app/src/main/java/com/example/minimal/MainActivity.java
-          package com.example.minimal;
+      - run: chmod +x ./gradlew
 
-          import android.app.Activity;
-          import android.os.Bundle;
-          import android.widget.TextView;
-
-          public class MainActivity extends Activity {
+      - run: ./gradlew assembleDebug          public class MainActivity extends Activity {
               @Override
               protected void onCreate(Bundle savedInstanceState) {
                   super.onCreate(savedInstanceState);
