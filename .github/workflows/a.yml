@@ -18,7 +18,10 @@ jobs:
 
       - run: |
           mkdir -p app/src/main/java/com/example/minimal
-          echo "rootProject.name = 'MinimalAndroid'" > settings.gradle
+          cat <<EOF > settings.gradle
+          rootProject.name = 'MinimalAndroid'
+          include ':app'
+          EOF
           cat <<EOF > build.gradle
           buildscript {
               repositories {
