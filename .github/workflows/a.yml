@@ -71,4 +71,4 @@ jobs:
           }
           EOF
 
-      - run: ./gradlew wrapper && ./gradlew assembleDebug
+      - run: gradle assembleDebug
